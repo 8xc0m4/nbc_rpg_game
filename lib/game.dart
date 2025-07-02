@@ -44,7 +44,7 @@ class Game {
         print('게임을 중단합니다.');
         break;
       }
-
+//else if로 다른거 누르면 잘못된 입력이라고 하기
       if (monster.health <= 0) {
         monsters.remove(monster);
         defeatedMonsters++;
@@ -101,7 +101,7 @@ class Game {
           '게임 결과: ${character.health > 0 ? "승리" : "패배"}\n';
 
       try {
-        File('result.txt').writeAsStringSync(result);
+        File('data/result.txt').writeAsStringSync(result);
         print('결과가 result.txt 파일에 저장되었습니다.');
       } catch (e) {
         print('결과 저장 중 오류가 발생했습니다: $e');
