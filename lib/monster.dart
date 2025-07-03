@@ -4,10 +4,28 @@ import 'character.dart';
 class Monster extends Entity {
   int maxAttackPower;
   String introMessage;
+  int turnCounter = 0;
+  String? asciiArt;
+
+  void showAsciiArt() {
+    if (asciiArt != null) {
+      print(asciiArt);
+    }
+  }
 
   Monster(String name, int health, this.maxAttackPower, this.introMessage)
       : super(name, health, 0, 0) {
     attackPower = maxAttackPower;
+    defense = 0;
+  }
+
+  void increaseDefenseIfNeeded() {
+    turnCounter++;
+    if (turnCounter >= 3) {
+      defense += 2;
+      turnCounter = 0;
+      print('$name의 방어력이 증가했습니다! 현재 방어력: $defense');
+    }
   }
 
   void assignAttackPower(int characterDefense) {
@@ -26,7 +44,6 @@ class Monster extends Entity {
     if (character.health < 0) character.health = 0;
     print('\n[$name]이(가) ${character.name}을(를) 공격했습니다. 데미지: $damage'
         '\n남은 체력: ${character.health}');
-    ('');
   }
 
   @override
@@ -38,7 +55,7 @@ class Monster extends Entity {
 
   @override
   void showStatus() {
-    print('\n[$name] 체력: $health, 공격력: $attackPower\n');
+    print('\n[$name] 체력: $health, 공격력: $attackPower, 방어력: $defense\n');
   }
 
   void sayIntro() {

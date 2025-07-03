@@ -6,9 +6,9 @@ import '../lib/monster.dart';
 import '../lib/game_util.dart';
 
 Future<void> main() async {
-  print('======================'
-      '===NBC RPG ONLINE==='
-      '======================');
+  print('\n================================================================'
+      '\n=========================NBC RPG ONLINE========================='
+      '\n================================================================');
   String name = inputCharacterName()!;
 
   List<int>? charStats = await loadCharacterStats();
@@ -21,6 +21,7 @@ Future<void> main() async {
       Character(name, charStats[0], charStats[1], charStats[2]);
 
   List<List<String>>? monsterData = await loadMonsterStats();
+
   if (monsterData == null || monsterData.isEmpty) {
     print('몬스터 데이터를 불러오지 못해 게임을 시작할 수 없습니다.');
     exit(1);

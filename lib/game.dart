@@ -29,10 +29,20 @@ class Game {
     return monsters[idx];
   }
 
+  void applyHealthBonus() {
+    final rand = Random();
+    if (rand.nextInt(100) < 30) {
+      character.health += 10;
+      print('보너스 체력을 얻었습니다! 현재 체력: ${character.health}');
+    }
+  }
+
   void startGame() {
     print('===================\n'
         '⚔️===게임 시작===⚔️\n'
         '===================\n');
+
+    applyHealthBonus();
 
     while (character.health > 0 && defeatedMonsters < monsters.length) {
       Monster monster = getRandomMonster();
@@ -84,7 +94,7 @@ class Game {
       character.showStatus();
       monster.showStatus();
 
-      print('\n행동을 선택하세요: 공격하기(1), 방어하기(2)');
+      print('\n행동을 선택하세요: 공격하기(1), 방어하기(2), 아이템 사용(3)');
       stdout.write('입력: ');
       String? input = stdin.readLineSync();
 
@@ -92,6 +102,8 @@ class Game {
         character.attack(monster);
       } else if (input == '2') {
         character.defend(monster.attackPower);
+      } else if (input == '3') {
+        character.useItem();
       } else {
         print('\n잘못된 입력입니다. 다시 선택해주세요.');
         continue;
@@ -99,6 +111,8 @@ class Game {
       if (monster.health <= 0) break;
 
       monster.attack(character);
+
+      monster.increaseDefenseIfNeeded();
 
       if (character.health <= 0) {
         print('\n캐릭터의 체력이 0이 되어 게임에서 패배했습니다.');
