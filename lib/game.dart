@@ -94,6 +94,7 @@ class Game {
       monster.showAsciiArt();
       character.showStatus();
       monster.showStatus();
+      monster.assignAttackPower(character.defense); //
 
       print('------------------------------------------------------');
       print('\n행동을 선택하세요: 공격하기(1), 방어하기(2), 아이템 사용(3)');
@@ -103,7 +104,7 @@ class Game {
       if (input == '1') {
         character.attack(monster);
       } else if (input == '2') {
-        character.defend(monster.attackPower);
+        character.defend();
       } else if (input == '3') {
         character.useItem();
       } else {

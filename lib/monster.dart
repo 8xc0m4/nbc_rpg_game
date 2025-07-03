@@ -44,12 +44,17 @@ class Monster extends Entity {
     int minAttack = characterDefense;
     int maxAttack = maxAttackPower;
     var rand = Random();
-    attackPower = maxAttack < minAttack
+    attackPower = (maxAttack <= minAttack)
         ? minAttack
         : minAttack + rand.nextInt(maxAttack - minAttack + 1);
   }
 
   void attackCharacter(Character character) {
+    if (character.isDefending) {
+      print('\n${character.name}이(가) 절대 방어로 공격을 무효화했습니다!');
+      character.isDefending = false;
+      return;
+    }
     int damage = attackPower - character.defense;
     if (damage < 0) damage = 0;
     character.health -= damage;

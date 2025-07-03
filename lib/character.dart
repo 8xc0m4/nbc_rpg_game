@@ -58,11 +58,10 @@ class Character extends Entity {
     print('\n [$name] HP: $health, ATK: $attackPower, DEP: $defense');
   }
 
-  void defend(int incomingAttackPower) {
-    int reducedDamage = (incomingAttackPower - defense * 2);
-    if (reducedDamage < 0) reducedDamage = 0;
-    health -= reducedDamage;
-    if (health < 0) health = 0;
-    print('$name이(가) 방어했습니다! 받은 데미지: $reducedDamage, 남은 HP: $health');
+  bool isDefending = false;
+
+  void defend() {
+    isDefending = true;
+    print('$name이(가) 절대 방어 자세를 취했습니다! 이번 턴은 피해를 받지 않습니다.');
   }
 }
