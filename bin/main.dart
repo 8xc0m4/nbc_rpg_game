@@ -6,7 +6,9 @@ import '../lib/monster.dart';
 import '../lib/game_util.dart';
 
 Future<void> main() async {
-  print('===NBC RPG ONLINE===');
+  print('======================'
+      '===NBC RPG ONLINE==='
+      '======================');
   String name = inputCharacterName()!;
 
   List<int>? charStats = await loadCharacterStats();
@@ -28,7 +30,8 @@ Future<void> main() async {
     String mName = data[0];
     int health = int.tryParse(data[1]) ?? 10;
     int maxAttack = int.tryParse(data[2]) ?? 5;
-    return Monster(mName, health, maxAttack);
+    String introMessage = data.length >= 4 ? data[3] : '...';
+    return Monster(mName, health, maxAttack, introMessage);
   }).toList();
 
   Game game = Game(character, monsters);

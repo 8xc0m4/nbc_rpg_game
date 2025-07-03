@@ -27,15 +27,14 @@ class Character extends Entity {
   void attackMonster(Monster monster) {
     monster.health -= attackPower;
     if (monster.health < 0) monster.health = 0;
-    print('$name이(가) \n ${monster.name}을 공격했습니다.');
-    ('\n${monster.name}의 남은 체력: ${monster.health}');
+    print('[$name]이(가) \n [${monster.name}]을 공격했습니다.');
+    ('\n[${monster.name}]의 남은 체력: ${monster.health}');
     ('');
   }
 
   @override
   void showStatus() {
-    print(
-        '\n캐릭터 상태 - 이름: $name, 체력: $health, 공격력: $attackPower, 방어력: $defense');
+    print('\n [$name] 체력: $health, 공격력: $attackPower, 방어력: $defense');
   }
 
   void defend(int attackPower) {}

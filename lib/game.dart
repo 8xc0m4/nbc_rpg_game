@@ -30,12 +30,17 @@ class Game {
   }
 
   void startGame() {
-    print('⚔️===게임 시작===⚔️');
+    print('===================\n'
+        '⚔️===게임 시작===⚔️\n'
+        '===================\n');
 
     while (character.health > 0 && defeatedMonsters < monsters.length) {
       Monster monster = getRandomMonster();
       monster.assignAttackPower(character.defense);
-      print('\n[새로운 몬스터 등장‼️]');
+      print('======================\n'
+          '[새로운 몬스터 등장‼️]\n'
+          '======================\n');
+      monster.sayIntro();
       monster.showStatus();
 
       bool continueBattle = battle(monster);
@@ -48,14 +53,16 @@ class Game {
       if (monster.health <= 0) {
         monsters.remove(monster);
         defeatedMonsters++;
-        print('\n몬스터를 물리쳤습니다!🎉🎉🎉 총 처치한 몬스터 수: $defeatedMonsters');
+        print(
+            '================================================================='
+            '\n몬스터를 물리쳤습니다!🎉🎉🎉 총 처치한 몬스터 수: $defeatedMonsters');
         if (defeatedMonsters >= monsters.length) {
-          print('\n모든 몬스터를 물리쳤습니다! 게임 승리!✅✅✅');
+          print('\n✅✅✅게임 승리!✅✅✅');
           ('');
           break;
         }
         while (true) {
-          stdout.write('\n☢️[경고!]☢️다음 몬스터와 대결하시겠습니까? (y/n): ');
+          stdout.write('\n[경고!]다음 몬스터와 대결하시겠습니까? (y/n): ');
           String? answer = stdin.readLineSync()?.toLowerCase();
           if (answer == 'y') {
             break;
@@ -107,7 +114,7 @@ class Game {
       String? input = stdin.readLineSync()?.toLowerCase();
 
       if (input == 'y') {
-        String result = '\n캐릭터 이름: ${character.name}'
+        String result = '\n [${character.name}]'
             '\n남은 체력: ${character.health}'
             '\n게임 결과: ${character.health > 0 ? "승리" : "패배"}';
 

@@ -33,7 +33,7 @@ Future<List<List<String>>?> loadMonsterStats() async {
   List<List<String>> monsters = [];
   for (var line in lines) {
     var parts = line.split(',');
-    if (parts.length != 3) {
+    if (parts.length != 4) {
       print('잘못된 몬스터 데이터 라인: $line');
       continue;
     }
@@ -46,7 +46,7 @@ String? inputCharacterName() {
   final nameRegex = RegExp(r'^[a-zA-Z가-힣]+$');
 
   while (true) {
-    stdout.write('캐릭터 이름을 입력하세요 (한글, 영문):');
+    stdout.write('\n캐릭터 이름을 입력하세요 (한글, 영문):');
     String? input = stdin.readLineSync(encoding: Encoding.getByName('utf-8')!);
 
     if (input == null || input.trim().isEmpty) {
@@ -55,7 +55,7 @@ String? inputCharacterName() {
     }
 
     if (!nameRegex.hasMatch(input.trim())) {
-      print("이름에는 한글 또는 영문 대소문자만 사용할 수 있습니다.");
+      print("\n이름에는 한글 또는 영문 대소문자만 사용할 수 있습니다.");
       continue;
     }
     return input.trim();
