@@ -37,6 +37,8 @@ class Game {
     }
   }
 
+  List<String> defeatedMonsterNames = [];
+
   void startGame() {
     print('===================\n'
         '⚔️===게임 시작===⚔️\n'
@@ -57,18 +59,25 @@ class Game {
 
       if (!continueBattle) {
         print('\n게임을 종료합니다.[게임 오버]');
+        saveResult();
         break;
       }
 //else if로 다른거 누르면 잘못된 입력이라고 하기
       if (monster.health <= 0) {
         monsters.remove(monster);
         defeatedMonsters++;
+        defeatedMonsterNames.add(monster.name);
         print(
             '================================================================='
             '\n몬스터를 물리쳤습니다!🎉🎉🎉 총 처치한 몬스터 수: $defeatedMonsters');
         if (defeatedMonsters >= monsters.length) {
           print('\n✅✅✅게임 승리!✅✅✅');
-          ('');
+          print('\n🎉 처치한 몬스터 목록:');
+          for (var name in defeatedMonsterNames) {
+            print('- $name');
+          }
+
+          saveResult();
           break;
         }
         while (true) {
@@ -131,10 +140,18 @@ class Game {
       String? input = stdin.readLineSync()?.toLowerCase();
 
       if (input == 'y') {
-        String result = '\n [${character.name}]'
-            '\n남은 체력: ${character.health}'
-            '\n게임 결과: ${character.health > 0 ? "승리" : "패배"}';
-
+        String result = '''
+==============================
+🎮 게임 결과 저장
+==============================
+[캐릭터명]: ${character.name}
+남은 HP: ${character.health}
+공격력 ATK: ${character.attackPower}
+방어력 DEF: ${character.defense}
+처치한 몬스터 수: $defeatedMonsters
+최종 결과: ${character.health > 0 ? "✅ 승리" : "❌ 패배"}
+==============================
+''';
         try {
           File('data/result.txt').writeAsStringSync(result);
           print('\n결과가 result.txt 파일에 저장되었습니다.');
