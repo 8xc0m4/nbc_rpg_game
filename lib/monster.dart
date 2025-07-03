@@ -23,8 +23,9 @@ class Monster extends Entity {
     if (damage < 0) damage = 0;
     character.health -= damage;
     if (character.health < 0) character.health = 0;
-    print(
-        '$name이(가) ${character.name}을(를) 공격했습니다. 데미지: $damage, 남은 체력: ${character.health}');
+    print('\n$name이(가) ${character.name}을(를) 공격했습니다. 데미지: $damage');
+    ('\n남은 체력: ${character.health}');
+    ('');
   }
 
   @override
@@ -36,6 +37,6 @@ class Monster extends Entity {
 
   @override
   void showStatus() {
-    print('몬스터 상태 - 이름: $name, 체력: $health, 공격력: $attackPower');
+    print('\n몬스터 상태 - 이름: $name, 체력: $health, 공격력: $attackPower\n');
   }
 }
