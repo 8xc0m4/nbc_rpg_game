@@ -91,9 +91,11 @@ class Game {
 
   bool battle(Monster monster) {
     while (character.health > 0 && monster.health > 0) {
+      monster.showAsciiArt();
       character.showStatus();
       monster.showStatus();
 
+      print('------------------------------------------------------');
       print('\n행동을 선택하세요: 공격하기(1), 방어하기(2), 아이템 사용(3)');
       stdout.write('입력: ');
       String? input = stdin.readLineSync();

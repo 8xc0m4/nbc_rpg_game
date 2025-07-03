@@ -27,7 +27,7 @@ class Character extends Entity {
     }
     usedItem = true;
     itemActive = true;
-    print('\n아이템을 사용했습니다! 이번 턴 공격력이 2배가 됩니다.');
+    print('\n아이템을 사용했습니다! 이번 턴 ATK이 2배가 됩니다.');
   }
 
   @override
@@ -41,8 +41,8 @@ class Character extends Entity {
     if (target is Monster) {
       target.health -= effectiveAttack;
       if (target.health < 0) target.health = 0;
-      print('[$name]이(가) [${target.name}]을 공격했습니다. 공격력: $effectiveAttack');
-      print('[${target.name}]의 남은 체력: ${target.health}');
+      print('[$name]이(가) [${target.name}]을 공격했습니다. ATK: $effectiveAttack');
+      print('[${target.name}]의 남은 HP: ${target.health}');
     }
   }
 
@@ -50,13 +50,19 @@ class Character extends Entity {
     monster.health -= attackPower;
     if (monster.health < 0) monster.health = 0;
     print('[$name]이(가) \n [${monster.name}]을 공격했습니다.'
-        '\n[${monster.name}]의 남은 체력: ${monster.health}');
+        '\n[${monster.name}]의 남은 HP: ${monster.health}');
   }
 
   @override
   void showStatus() {
-    print('\n [$name] 체력: $health, 공격력: $attackPower, 방어력: $defense');
+    print('\n [$name] HP: $health, ATK: $attackPower, DEP: $defense');
   }
 
-  void defend(int attackPower) {}
+  void defend(int incomingAttackPower) {
+    int reducedDamage = (incomingAttackPower - defense * 2);
+    if (reducedDamage < 0) reducedDamage = 0;
+    health -= reducedDamage;
+    if (health < 0) health = 0;
+    print('$name이(가) 방어했습니다! 받은 데미지: $reducedDamage, 남은 HP: $health');
+  }
 }
