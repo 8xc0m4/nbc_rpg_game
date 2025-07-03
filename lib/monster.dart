@@ -5,13 +5,6 @@ class Monster extends Entity {
   int maxAttackPower;
   String introMessage;
   int turnCounter = 0;
-  String? asciiArt;
-
-  void showAsciiArt() {
-    if (asciiArt != null) {
-      print(asciiArt);
-    }
-  }
 
   Monster(String name, int health, this.maxAttackPower, this.introMessage)
       : super(name, health, 0, 0) {
