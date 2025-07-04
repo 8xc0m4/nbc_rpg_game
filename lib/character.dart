@@ -16,9 +16,11 @@ abstract class Entity {
 class Character extends Entity {
   bool usedItem = false;
   bool itemActive = false;
+  int maxHealth;
 
   Character(String name, int health, int attack, int defense)
-      : super(name, health, attack, defense);
+      : maxHealth = health,
+        super(name, health, attack, defense);
 
   void useItem() {
     if (usedItem) {
@@ -62,6 +64,14 @@ class Character extends Entity {
 
   void defend() {
     isDefending = true;
+    int healAmount = 5;
+    health += healAmount;
+
+    if (health > maxHealth) {
+      health = maxHealth;
+    }
+
     print('$name이(가) 절대 방어 자세를 취했습니다! 이번 턴은 피해를 받지 않습니다.');
+    print('💚 방어하면서 체력을 $healAmount 회복했습니다. 현재 체력: $health');
   }
 }
