@@ -1,2 +1,32 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+실행 하기 전 꼭 터미널을 크게 하세요!
+
+---
+
+### [Dart Console] NBC RPG Game
+> Dart로 만든 콘솔 기반 RPG 게임입니다.
+> 텍스트 기반 전투 시스템으로, 플레이어는 몬스터들과 전투하며 승리 혹은 패배에 따라 결과가 기록됩니다.
+
+---
+
+### 게임 컨텐츠
+#### 캐릭터
+> 사용자가 이름을 입력하면 characters.txt의 능력치를 불러와 생성됩니다.
+> 공격과 방어, 아이템 사용이 가능합니다.
+
+#### 몬스터
+> monsters.txt에서 렌덤으로 불러오며, 각각 이름 / 체력 / 최대 공격력을 가집니다.
+> 공격 시마다 랜덤 공격력을 생성합니다.
+> 등장 시 엄청난 대사와 도트아트가 출력됩니다.
+> 가끔씩 엄청나게 강한 보스가 출몰합니다.
+
+#### 전투
+> 플레이어는 몬스터와 1:1 전투를 진행합니다.
+> 선택지: 1) 공격하기, 2) 방어하기, 3)아이템 사용.
+> 모든 몬스터를 이기면 승리, 체력이 0이 되면 패배.
+> 승리하면 지금까지 처치한 몬스터의 목록이 출력됩니다.
+
+---
+
+### 기술스택
+
+<img src="https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=dart&logoColor=white">
