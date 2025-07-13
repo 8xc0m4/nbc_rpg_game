@@ -29,4 +29,4 @@
 
 ### 기술스택
 
-<img src="https://img.shields.io/badge/loki-0175C2?style=for-the-badge&logo=dart&logoColor=red">
+<img src="https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=dart&logoColor=white">
